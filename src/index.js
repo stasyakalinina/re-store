@@ -1,2 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/app/app';
 
-console.log("New project!")
+ReactDOM.render(<App/>, document.getElementById('root'));
