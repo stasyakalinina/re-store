@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <section>
       <h2>Home Page</h2>
-      <BookList books={[]}/>
+      <BookList />
     </section>
   );
 };
