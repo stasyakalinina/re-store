@@ -3,12 +3,19 @@ import './book-item.css';
 
 const BookItem = (props) => {
 
-  const { title, author } = props.book;
+  const { title, author, price, coverImage } = props.book;
   return (
-    <Fragment>
-      <span>{title}</span>
-      <span>{author}</span>
-    </Fragment>
+    <div className="book-item">
+      <div className="book-cover">
+        <img src={coverImage} alt="cover" />
+      </div>
+      <div className="book-details">
+        <a href="#" className="book-title">{title}</a>
+        <p className="book-author">{author}</p>
+        <p className="book-price">${price}</p>
+        <button className="btn btn-info book-btn">Add to cart</button>
+      </div>
+    </div>
   );
 }
 

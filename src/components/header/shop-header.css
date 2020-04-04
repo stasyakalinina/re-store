@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header .logo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding-left: 1rem;
+}
+
+.header .logo:hover {
+  text-decoration: none;
+}
+
+.header .cart {
+  align-self: center;
+}
+
+.header .cart-link {
+  font-size: 1.3rem;
+  color: #212529;
+}
+
+.header .cart-icon {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 2.2rem;
+  color: cadetblue;
+}
+
+@media(max-width: 440px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header .logo {
+    padding: 0.5rem;
+  }
+}

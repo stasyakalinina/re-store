@@ -1,0 +1,37 @@
+.shopping-cart__table {
+  margin-top: 45px;
+}
+
+.shopping-cart .total {
+  margin-right: 10px;
+  text-align: right;
+  font-size: 1.3rem;
+}
+
+.shopping-cart__action {
+  min-width: 133px;
+}
+
+.shopping-cart__action .btn {
+  margin: 0 10px 0 0;
+}
+
+.shopping-cart__action .btn:last-child {
+  margin: 0
+}
+
+@media(max-width: 440px) {
+  .shopping-cart__action .btn,
+  .shopping-cart__action .btn:last-child {
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  .shopping-cart__action {
+    min-width: 50px;
+  }
+
+  .table td, .table th {
+    padding: 0.5rem;
+  }
+}
