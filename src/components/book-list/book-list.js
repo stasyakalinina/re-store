@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import BookItem from '../book-item/book-item';
 import withBookstoreService from '../hoc/with-bookstore-service';
-import { booksLoaded, booksRequested } from '../../actions';
+import { booksLoaded, booksRequested, booksError } from '../../actions';
+import ErrorIndicator from '../error-indicator/error-indicator';
 import { compose } from '../../utils';
 import Preloader from '../preloader/preloader';
 import './book-list.css';
@@ -11,32 +11,33 @@ import './book-list.css';
 class BookList extends Component {
 
   componentDidMount() {
-    const { bookstoreService, booksLoaded, booksRequested } = this.props;
-    booksRequested();
-    bookstoreService.getBooks()
-      .then((data) => booksLoaded(data));
+    this.props.fetchBooks();
   }
 
   render() {
-    const { books, loading } = this.props;
+    const { books, loading, error } = this.props;
 
     if (loading) {
       return <Preloader />
-    } else {
-      return (
-        <ul className="book-list">
-          {
-            books.map((book) => {
-              return (
-                <li key={book.id}>
-                  <BookItem book={book}/>
-                </li>
-              )
-            })
-          }
-        </ul>
-      );
     }
+
+    if (error) {
+      return <ErrorIndicator />
+    }
+
+    return (
+      <ul className="book-list">
+        {
+          books.map((book) => {
+            return (
+              <li key={book.id}>
+                <BookItem book={book}/>
+              </li>
+            )
+          })
+        }
+      </ul>
+    );
   }
 }
 
@@ -44,14 +45,21 @@ const mapStateToProps = (state) => {
   return {
     books: state.books,
     loading: state.loading,
+    error: state.error
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    booksLoaded,
-    booksRequested
-  }, dispatch)
+const mapDispatchToProps = (dispatch, ownProps) => {
+
+  return {
+    fetchBooks: () => {
+      dispatch(booksRequested());
+
+      ownProps.bookstoreService.getBooks()
+        .then((data) => dispatch(booksLoaded(data)))
+        .catch((error) => dispatch(booksError(error)));
+    }
+  }
 };
 
 export default compose(
