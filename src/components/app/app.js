@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { CartPage, HomePage } from '../pages';
-import ShopHeader from '../header/shop-header';
+import ShopHeader from '../shop-header/shop-header';
 import './app.css';
 
 const App = () => {

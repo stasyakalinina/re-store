@@ -12,8 +12,15 @@
   padding-left: 1rem;
 }
 
-.header .logo:hover {
+.header a {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s cubic-bezier(1, 0, 0, 1);
+}
+
+.header a:hover {
   text-decoration: none;
+  opacity: 0.8;
 }
 
 .header .cart {

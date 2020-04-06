@@ -10,7 +10,7 @@ const ShopHeader = ({numItems, total}) => {
         <span className="logo text-dark">ReStore</span>
       </Link>
       <nav className="cart">
-        <Link to="/">
+        <Link to="/cart">
           <p className="cart-details" href="#">
             <i className="cart-icon fa fa-shopping-cart"></i>
             {numItems} items (${total})
