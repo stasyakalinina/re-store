@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './book-item.css';
 
 const BookItem = (props) => {
@@ -10,7 +10,7 @@ const BookItem = (props) => {
         <img src={coverImage} alt="cover" />
       </div>
       <div className="book-details">
-        <a href="#" className="book-title">{title}</a>
+        <span className="book-title">{title}</span>
         <p className="book-author">{author}</p>
         <p className="book-price">${price}</p>
         <button className="btn btn-info book-btn">Add to cart</button>
