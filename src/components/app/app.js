@@ -9,8 +9,8 @@ const App = () => {
     <div className="container">
       <ShopHeader numItems={5} total={210}/>
       <Switch>
-      <Route path='/' component={HomePage} exact/>
-      <Route path='/cart' component={CartPage}/>
+        <Route path='/' component={HomePage} exact/>
+        <Route path='/cart' component={CartPage}/>
     </Switch>
     </div>
   )
