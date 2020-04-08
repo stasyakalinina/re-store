@@ -2,6 +2,10 @@
   margin-top: 45px;
 }
 
+.table__name {
+  text-align: left;
+}
+
 .shopping-cart .total {
   margin-right: 10px;
   text-align: right;

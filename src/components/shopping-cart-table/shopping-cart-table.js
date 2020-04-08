@@ -9,7 +9,7 @@ const ShoppingCartTable = ({items, totalPriceOrder, onIncrease, onDecrease, onDe
     return (
       <tr key={id}>
         <td>{index + 1}</td>
-        <td>{name}</td>
+        <td className="table__name">{name}</td>
         <td>{count}</td>
         <td>${total}</td>
         <td className="shopping-cart__action">
