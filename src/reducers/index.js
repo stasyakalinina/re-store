@@ -6,6 +6,38 @@ const initialState = {
   orderTotal: 306,
 };
 
+const updateCartItems = (cartItems, item, index) => {
+  if (index === -1) {
+    return [
+      ...cartItems,
+      item
+    ]
+  }
+
+  return [
+    ...cartItems.slice(0, index),
+    item,
+    ...cartItems.slice(index + 1)
+  ]
+};
+
+const updateCartItem = (book, item = {}) => {
+
+  const {
+    id = book.id,
+    title = book.title,
+    count = 0,
+    total = 0
+  } = item;
+
+    return {
+      id,
+      title,
+      count: count + 1,
+      total: total + book.price
+    }
+}
+
 const reducer = (state = initialState, action) => {
   console.log(action.type);
 
@@ -38,49 +70,18 @@ const reducer = (state = initialState, action) => {
     case 'BOOK_ADDED_TO_CART':
       let bookId = action.payload;
       let book = state.books.find((item) => item.id === bookId);
-      let itemIndex = state.books.findIndex((el) => el.id === bookId);
+      let itemIndex = state.cartItems.findIndex((el) => el.id === bookId);
       let item = state.cartItems[itemIndex];
+      let newItem = updateCartItem(book, item);
 
-      let newItem;
-
-      if(item) {
-        newItem = {
-          ...item,
-          count: item.count + 1,
-          total: item.total + book.price
-        }
-      } else {
-        newItem = {
-          id: book.id,
-          title: book.title,
-          count: 1,
-          total: book.price
-        }
+      return {
+        ...state,
+        cartItems: updateCartItems(state.cartItems, newItem, itemIndex)
       }
-
-      if(itemIndex < 0) {
-        return {
-          ...state,
-          cartItems: [
-            ...state.cartItems,
-            newItem
-          ]
-        };
-      } else {
-        return {
-          ...state,
-          cartItems: [
-            ...state.cartItems.slice(0, itemIndex),
-            newItem,
-            ...state.cartItems.slice(itemIndex + 1)
-          ]
-        };
-      }
-
 
     default:
       return state;
-  }
+  };
 };
 
 export default reducer;
