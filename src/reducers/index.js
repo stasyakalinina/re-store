@@ -7,6 +7,13 @@ const initialState = {
 };
 
 const updateCartItems = (cartItems, item, index) => {
+  if(item.count === 0) {
+    return [
+      ...cartItems.slice(0, index),
+      ...cartItems.slice(index + 1)
+    ]
+  }
+
   if (index === -1) {
     return [
       ...cartItems,
@@ -21,8 +28,7 @@ const updateCartItems = (cartItems, item, index) => {
   ]
 };
 
-const updateCartItem = (book, item = {}) => {
-
+const updateCartItem = (book, item = {}, quantity) => {
   const {
     id = book.id,
     title = book.title,
@@ -33,9 +39,22 @@ const updateCartItem = (book, item = {}) => {
     return {
       id,
       title,
-      count: count + 1,
-      total: total + book.price
+      count: count + quantity,
+      total: total + quantity * book.price,
     }
+};
+
+const updateOrder = (state, bookId, quantity) => {
+  const { books, cartItems } = state;
+  let book = books.find((item) => item.id === bookId);
+  let itemIndex = cartItems.findIndex((el) => el.id === bookId);
+  let item = cartItems[itemIndex];
+  let newItem = updateCartItem(book, item, quantity);
+
+  return {
+    ...state,
+    cartItems: updateCartItems(cartItems, newItem, itemIndex)
+  };
 }
 
 const reducer = (state = initialState, action) => {
@@ -68,16 +87,14 @@ const reducer = (state = initialState, action) => {
       };
 
     case 'BOOK_ADDED_TO_CART':
-      let bookId = action.payload;
-      let book = state.books.find((item) => item.id === bookId);
-      let itemIndex = state.cartItems.findIndex((el) => el.id === bookId);
-      let item = state.cartItems[itemIndex];
-      let newItem = updateCartItem(book, item);
+      return updateOrder(state, action.payload, 1);
 
-      return {
-        ...state,
-        cartItems: updateCartItems(state.cartItems, newItem, itemIndex)
-      }
+    case 'BOOK_REMOVED_FROM_CART':
+      return updateOrder(state, action.payload, -1);
+
+    case 'ALL_BOOKS_REMOVED_FROM_CART':
+      const item = state.cartItems.find((el) => el.id === action.payload);
+      return updateOrder(state, action.payload, -item.count);
 
     default:
       return state;
