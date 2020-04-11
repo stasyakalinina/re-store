@@ -11,7 +11,9 @@ import ErrorIndicator from '../error-indicator/error-indicator';
 import Preloader from '../preloader/preloader';
 import './book-list.css';
 
-const BookList = ({books, onAddedToCart}) => {
+const BookList = (props) => {
+  const { books, onAddedToCart } = props;
+
   return (
     <ul className="book-list">
       {
@@ -50,10 +52,11 @@ class BookListContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { bookList: {books, loading, error } } = state;
   return {
-    books: state.books,
-    loading: state.loading,
-    error: state.error
+    books,
+    loading,
+    error,
   }
 };
 

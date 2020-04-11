@@ -61,9 +61,10 @@ const ShoppingCartTable = ({items, totalPriceOrder, onIncrease, onDecrease, onDe
 };
 
 const mapStateToProps = (state) => {
+  const { shoppingCart: { cartItems, orderTotal } } = state;
   return {
-    items: state.cartItems,
-    totalPriceOrder: state.orderTotal
+    items: cartItems,
+    totalPriceOrder: orderTotal
   };
 };
 
@@ -73,11 +74,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(bookAddedToCart(id));
     },
     onDecrease:(id) => {
-      console.log(`Decrease ${id}`);
       dispatch(bookRemovedFromCart(id));
     },
     onDelete: (id) => {
-      console.log(`Delete ${id}`);
       dispatch(allBooksRemovedFromCart(id));
     },
   }
