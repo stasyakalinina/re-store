@@ -1,19 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { CartPage, HomePage } from '../pages';
 import ShopHeader from '../shop-header/shop-header';
 import './app.css';
 
-const App = () => {
+const App = (props) => {
+  const { cartItems, orderTotal } = props;
+  let sum = cartItems.reduce((sum, elem) => sum + elem.count, 0);
+
   return (
     <div className="container">
-      <ShopHeader numItems={5} total={210}/>
+      <ShopHeader numItems={sum} total={orderTotal ? orderTotal : 0}/>
       <Switch>
-        <Route path='/' component={HomePage} exact/>
-        <Route path='/cart' component={CartPage}/>
+        <Route
+          path="/"
+          component={HomePage}
+          exact/>
+        <Route
+          path="/cart"
+          component={CartPage}/>
       </Switch>
     </div>
   )
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  const { cartItems, orderTotal } = state.shoppingCart;
+  return {
+    cartItems,
+    orderTotal
+  }
+}
+
+export default connect(mapStateToProps)(App);

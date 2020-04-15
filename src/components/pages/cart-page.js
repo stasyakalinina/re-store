@@ -1,10 +1,11 @@
 import React from 'react';
+import ShoppingCartTable from '../shopping-cart-table/shopping-cart-table';
 
-const CartPage = () => {
-
+const CartPage = (props) => {
+ console.log(props);
   return (
     <section>
-      <h2>Cart Page</h2>
+      <ShoppingCartTable />
     </section>
   );
 };

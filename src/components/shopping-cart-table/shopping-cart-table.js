@@ -34,6 +34,10 @@ const ShoppingCartTable = ({items, totalPriceOrder, onIncrease, onDecrease, onDe
     )
   }
 
+  if(items.length === 0) {
+    return <p>Please add book to cart</p>
+  }
+
   return (
     <section className="shopping-cart">
       <h2>Your Order</h2>
