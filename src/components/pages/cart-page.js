@@ -1,12 +1,12 @@
 import React from 'react';
 import ShoppingCartTable from '../shopping-cart-table/shopping-cart-table';
 
-const CartPage = (props) => {
- console.log(props);
+const CartPage = () => {
+
   return (
-    <section>
+    <div className="cart">
       <ShoppingCartTable />
-    </section>
+    </div>
   );
 };
 

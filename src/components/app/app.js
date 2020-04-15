@@ -16,10 +16,10 @@ const App = (props) => {
         <Route
           path="/"
           component={HomePage}
-          exact/>
+          exact />
         <Route
           path="/cart"
-          component={CartPage}/>
+          component={CartPage} />
       </Switch>
     </div>
   )

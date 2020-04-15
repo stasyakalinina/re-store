@@ -1,14 +1,11 @@
 import React from 'react';
 import BookList from '../book-list/book-list';
-import ShoppingCartTable from '../shopping-cart-table/shopping-cart-table';
 
 const HomePage = () => {
-
   return (
-    <main className="shop" role="main">
+    <div className="shop">
       <BookList />
-      <ShoppingCartTable />
-    </main>
+    </div>
   );
 };
 
