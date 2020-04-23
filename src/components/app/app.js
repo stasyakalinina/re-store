@@ -14,7 +14,7 @@ const App = (props) => {
       <ShopHeader numItems={sum} total={orderTotal ? orderTotal : 0}/>
       <Switch>
         <Route
-          path="/"
+          path={process.env.PUBLIC_URL + '/'}
           component={HomePage}
           exact />
         <Route
