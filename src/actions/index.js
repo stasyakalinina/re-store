@@ -39,7 +39,7 @@ const allBooksRemovedFromCart = (bookId) => {
   }
 }
 
-const fetchBooks = (bookstoreService, dispatch) => () => {
+const fetchBooks = (bookstoreService) => () => (dispatch) => {
   dispatch(booksRequested());
 
   bookstoreService.getBooks()
