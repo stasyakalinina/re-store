@@ -14,11 +14,11 @@ const App = (props) => {
       <ShopHeader numItems={sum} total={orderTotal ? orderTotal : 0}/>
       <Switch>
         <Route
-          path={process.env.PUBLIC_URL + '/'}
+          path="/"
           component={HomePage}
           exact />
         <Route
-          path={process.env.PUBLIC_URL + '/cart'}
+          path="/cart"
           component={CartPage} />
       </Switch>
     </div>
