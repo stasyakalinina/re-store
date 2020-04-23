@@ -18,7 +18,7 @@ const App = (props) => {
           component={HomePage}
           exact />
         <Route
-          path="/cart"
+          path={process.env.PUBLIC_URL + '/cart'}
           component={CartPage} />
       </Switch>
     </div>
